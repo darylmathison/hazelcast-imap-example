@@ -1,29 +1,41 @@
 package com.darylmathison.hazelcast.rule;
 
+import com.darylmathison.hazelcast.imap.data.Person;
+import com.hazelcast.config.MapConfig;
+import com.hazelcast.config.MapStoreConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IExecutorService;
+import com.hazelcast.core.IMap;
 import org.junit.rules.ExternalResource;
+
+import java.util.ResourceBundle;
 
 /**
  * Created by Daryl on 4/27/2015.
  */
 public class HazelcastInstanceResource extends ExternalResource {
-    public static final String SERVICE_NAME = "Charlotte";
-    HazelcastInstance instance;
-    IExecutorService service;
+
+    private HazelcastInstance instance;
+    private IMap<Long, Person> map;
+    private ResourceBundle settings = ResourceBundle.getBundle("test");
 
     @Override
     protected void before() throws Throwable {
         super.before();
+
         instance = Hazelcast.newHazelcastInstance();
-        service = instance.getExecutorService(SERVICE_NAME);
+        MapConfig config = instance.getConfig().getMapConfig(settings.getString("map.name"));
+        MapStoreConfig mapStoreConfig = new MapStoreConfig();
+        mapStoreConfig.setEnabled(true);
+        mapStoreConfig.setClassName("com.darylmathison.hazelcast.imap.store.PersonStore");
+        config.setMapStoreConfig(mapStoreConfig);
+        map = instance.getMap(settings.getString("map.name"));
+        map.loadAll(true);
     }
 
     @Override
     protected void after() {
         super.after();
-        service.shutdown();
         instance.shutdown();
     }
 
@@ -31,7 +43,7 @@ public class HazelcastInstanceResource extends ExternalResource {
         return instance;
     }
 
-    public IExecutorService getService() {
-        return service;
+    public IMap<Long, Person> getMap() {
+        return map;
     }
 }
