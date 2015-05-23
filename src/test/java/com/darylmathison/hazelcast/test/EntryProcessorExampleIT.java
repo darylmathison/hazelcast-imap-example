@@ -22,6 +22,7 @@ public class EntryProcessorExampleIT {
     @Test
     public void getSadieFromMap() {
         IMap<Long, Person> map = hazelcastInstanceResource.getMap();
+        map.loadAll(true);
         EntryProcessorExample entryProcessorExample = new EntryProcessorExample();
         Map<Long, Object> results = map.executeOnEntries(entryProcessorExample);
 

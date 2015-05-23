@@ -30,7 +30,6 @@ public class HazelcastInstanceResource extends ExternalResource {
         mapStoreConfig.setClassName("com.darylmathison.hazelcast.imap.store.PersonStore");
         config.setMapStoreConfig(mapStoreConfig);
         map = instance.getMap(settings.getString("map.name"));
-        map.loadAll(true);
     }
 
     @Override
