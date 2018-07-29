@@ -29,6 +29,10 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:git@github.com:darylmathison/hazelcast-imap-example.git</connection>
+    </scm>
+
     <dependencies>
         <dependency>
             <groupId>com.hazelcast</groupId>
