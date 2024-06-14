@@ -4,7 +4,7 @@ package com.darylmathison.hazelcast.test;
 import com.darylmathison.hazelcast.imap.data.Person;
 import com.darylmathison.hazelcast.imap.query.PredicateExample;
 import com.darylmathison.hazelcast.rule.HazelcastInstanceResource;
-import com.hazelcast.core.IMap;
+import com.hazelcast.map.IMap;
 import org.junit.ClassRule;
 import org.junit.Test;
 

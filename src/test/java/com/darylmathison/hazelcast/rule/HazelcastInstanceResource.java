@@ -5,7 +5,7 @@ import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.MapStoreConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IMap;
+import com.hazelcast.map.IMap;
 import org.junit.rules.ExternalResource;
 
 import java.util.ResourceBundle;
@@ -17,7 +17,7 @@ public class HazelcastInstanceResource extends ExternalResource {
 
     private HazelcastInstance instance;
     private IMap<Long, Person> map;
-    private ResourceBundle settings = ResourceBundle.getBundle("test");
+    private final ResourceBundle settings = ResourceBundle.getBundle("test");
 
     @Override
     protected void before() throws Throwable {
