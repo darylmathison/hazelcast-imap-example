@@ -6,7 +6,7 @@
 package com.darylmathison.hazelcast.imap.query;
 
 import com.darylmathison.hazelcast.imap.data.Person;
-import com.hazelcast.core.IMap;
+import com.hazelcast.map.IMap;
 import com.hazelcast.query.Predicate;
 
 import java.util.Collection;

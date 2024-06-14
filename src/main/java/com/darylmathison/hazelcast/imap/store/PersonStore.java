@@ -1,7 +1,7 @@
 package com.darylmathison.hazelcast.imap.store;
 
 import com.darylmathison.hazelcast.imap.data.Person;
-import com.hazelcast.core.MapStore;
+import com.hazelcast.map.MapStore;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class PersonStore implements MapStore<Long, Person> {
     private final Map<Long, Person> personMap;
 
     public PersonStore() {
-        personMap = new HashMap<Long, Person>();
+        personMap = new HashMap<>();
         personMap.put(1L, new Person("Daryl", "Mathison"));
         personMap.put(2L, new Person("Sadie", "Mathison"));
         personMap.put(3L, new Person("Sasha", "Mathison"));
@@ -28,7 +28,7 @@ public class PersonStore implements MapStore<Long, Person> {
     }
 
     public Map<Long, Person> loadAll(Collection<Long> collection) {
-        Map<Long, Person> sendOffMap = new HashMap<Long, Person>();
+        Map<Long, Person> sendOffMap = new HashMap<>();
         for(Long key: collection) {
             sendOffMap.put(key, personMap.get(key));
         }

@@ -77,8 +77,8 @@
                         <reports>
                             <report>dependencies</report>
                             <report>index</report>
-                            <report>project-team</report>
-                            <report>issue-tracking</report>
+                            <report>team</report>
+                            <report>issue-management</report>
                             <report>scm</report>
                         </reports>
                     </reportSet>
